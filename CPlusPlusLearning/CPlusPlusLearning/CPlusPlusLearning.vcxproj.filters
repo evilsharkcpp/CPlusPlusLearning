@@ -27,6 +27,9 @@
     <ClCompile Include="Solution.cpp">
       <Filter>Исходные файлы\LeetCode</Filter>
     </ClCompile>
+    <ClCompile Include="ListNode.h">
+      <Filter>Файлы заголовков\LeetCode</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Solution.h">
