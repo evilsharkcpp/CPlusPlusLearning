@@ -1,5 +1,10 @@
 #include "Solution.h"
 #include <vector>
+#include <set>
+#include <queue>
+#include <map>
+#include <stack>
+#include <algorithm>
 
 bool Solution::isMatch(std::string text, std::string pattern)
 {
@@ -79,4 +84,162 @@ ListNode* Solution::mergeTwoLists(ListNode* list1, ListNode* list2)
    if (list2 != nullptr)
       root->next = list2;
    return res->next;
+}
+
+std::vector<std::vector<int>> Solution::threeSum(std::vector<int>& nums)
+{
+   std::vector<std::vector<int>> result{};
+   std::set<std::vector<int>> s{};
+   std::sort(nums.begin(), nums.end());
+   for (int i{ 0 }; i < nums.size() - 2 && nums[i] <= 0; i++)
+   {
+      int left = i + 1;
+      int right = nums.size() - 1;
+      while (right > left)
+      {
+         int sum = nums[i] + nums[left] + nums[right];
+         if (sum == 0)
+         {
+            s.insert({ nums[i], nums[left], nums[right] });
+            //ignore duplicates of nums[left]
+            while (left < right && nums[left] == nums[left + 1]) left++;
+            //ignore duplicates of nums[right]
+            while (left < right && nums[right] == nums[right - 1]) right--;
+            left++;
+            right--;
+         }
+         else
+            if (sum > 0)
+               right--;
+            else
+               left++;
+         while (i < nums.size() - 2 && nums[i] == nums[i + 1]) i++;
+      }
+   }
+   result.assign(s.begin(), s.end());
+   return result;
+}
+
+std::vector<std::string> Solution::letterCombinations(std::string digits)
+{
+   std::queue<std::string> letters{};
+   std::map<char, std::string> container{ {'2', "abc"}, {'3', "def"}, {'4', "ghi"}, {'5', "jkl"}, {'6', "mno"}, {'7', "pqrs"}, {'8', "tuv"}, {'9', "wxyz"} };
+   for (auto& ch : digits)
+   {
+      if (letters.empty())
+      {
+         for (auto& t : container[ch])
+         {
+            letters.push(std::string(1, t));
+         }
+      }
+      else
+      {
+         int queueSize = letters.size();
+         for (int i{ 0 }; i < queueSize; i++)
+         {
+            std::string comb = letters.front();
+            letters.pop();
+            for (auto& t : container[ch])
+            {
+               letters.push(comb + std::string(1, t));
+            }
+         }
+      }
+   }
+   std::vector<std::string> result;
+   while (!letters.empty())
+   {
+      result.push_back(letters.front());
+      letters.pop();
+   }
+   return result;
+}
+
+ListNode* Solution::removeNthFromEnd(ListNode* head, int n)
+{
+   auto startPtr = head;
+   auto middlePtr = head;
+   auto middleIndex = 0;
+   auto size = 0;
+   while (startPtr != nullptr)
+   {
+      startPtr = startPtr->next;
+      if (middleIndex++ % 2 == 0)
+         middlePtr = middlePtr->next;
+      size++;
+   }
+   auto removeIndex = size - n;
+   if (removeIndex == 0)
+      return head->next;
+   if (removeIndex > middleIndex)
+   {
+      while (middleIndex++ != removeIndex - 1)
+         middlePtr = middlePtr->next;
+      auto tmp = middlePtr->next;
+      middlePtr->next = tmp->next;
+   }
+   else
+   {
+      auto startIndex = 0;
+      startPtr = head;
+      while (startIndex++ != removeIndex - 1)
+         startPtr = startPtr->next;
+      auto tmp = startPtr->next;
+      startPtr->next = tmp->next;
+
+   }
+   return head;
+}
+
+bool Solution::isValid(std::string s)
+{
+   std::map<char, char> brackets{ {')', '('}, {'}', '{'}, {']', '['} };
+   std::stack<char> st{};
+   for (auto& ch : s)
+   {
+      switch (ch)
+      {
+      case '(':
+      case '{':
+      case '[':
+         st.push(ch);
+         break;
+      case ')':
+      case '}':
+      case ']':
+         if (!st.empty() && st.top() == brackets[ch])
+            st.pop();
+         else
+            return false;
+         break;
+      default:
+         return false;
+         break;
+      }
+   }
+   return st.empty();
+}
+
+ListNode* Solution::mergeKLists(std::vector<ListNode*>& lists)
+{
+   ListNode* head = {};
+   for (auto& list : lists)
+   {
+      head = mergeTwoLists(list, head);
+   }
+   return head;
+}
+
+std::vector<std::string> Solution::generateParenthesis(int n)
+{
+   std::vector<std::string> res;
+   if (n == 0)
+      res.push_back("");
+   else
+      for (int i = 0; i < n; i++)
+         for (auto& left : generateParenthesis(i))
+            for (auto& right : generateParenthesis(n - 1 - i))
+               res.push_back("(" + left + ")" + right);
+   return res;
 }

@@ -28,4 +28,35 @@ public:
    ///</summary>
    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2);
 
+   //week 20.02 - 26.02
+
+   ///<summary>
+   /// https://leetcode.com/problems/3sum/
+   ///</summary>
+   std::vector<std::vector<int>> threeSum(std::vector<int>& nums);
+
+   ///<summary>
+   /// https://leetcode.com/problems/letter-combinations-of-a-phone-number/
+   ///</summary>
+   std::vector<std::string> letterCombinations(std::string digits);
+
+   ///<summary>
+   /// https://leetcode.com/problems/remove-nth-node-from-end-of-list/
+   ///</summary>
+   ListNode* removeNthFromEnd(ListNode* head, int n);
+
+   ///<summary>
+   /// https://leetcode.com/problems/valid-parentheses/
+   ///</summary>
+   bool isValid(std::string s);
+
+   ///<summary>
+   /// https://leetcode.com/problems/merge-k-sorted-lists/
+   ///</summary>
+   ListNode* mergeKLists(std::vector<ListNode*>& lists);
+
+   ///<summary>
+   /// https://leetcode.com/problems/generate-parentheses/
+   ///</summary>
+   std::vector<std::string> generateParenthesis(int n);
 };
