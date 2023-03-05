@@ -243,3 +243,61 @@ std::vector<std::string> Solution::generateParenthesis(int n)
                res.push_back("(" + left + ")" + right);
    return res;
 }
+
+int Solution::removeDuplicates(std::vector<int>& nums)
+{
+   int insertIndex{ 1 };
+   for (int i{ 1 }; i < nums.size(); i++)
+      if (nums[i - 1] != nums[i])
+         nums[insertIndex++] = nums[i];
+   return insertIndex;
+}
+
+int Solution::strStr(std::string haystack, std::string needle)
+{
+   for (int i = 0; i < haystack.length(); i++)
+   {
+      bool isEqual = true;
+      for (int k = 0; k < needle.length(); k++)
+      {
+         if (i + k >= haystack.length())
+            return -1;
+         if (haystack[i + k] != needle[k])
+         {
+            isEqual = false;
+            break;
+         }
+      }
+      if (isEqual)
+         return i;
+   }
+   return -1;
+}
+
+int Solution::search(std::vector<int>& nums, int target)
+{
+   int start = 0;
+   int end = nums.size() - 1;
+   int middle = 0;
+   while (start <= end)
+   {
+      middle = start + (end - start) / 2;
+      if (nums[middle] == target)
+         return middle;
+      if (nums[start] <= nums[middle])
+      {
+         if (target >= nums[start] && target < nums[middle])
+            end = middle - 1;
+         else
+            start = middle + 1;
+      }
+      else
+      {
+         if (target <= nums[end] && target > nums[middle])
+            start = middle + 1;
+         else
+            end = middle - 1;
+      }
+   }
+   return -1;
+}
