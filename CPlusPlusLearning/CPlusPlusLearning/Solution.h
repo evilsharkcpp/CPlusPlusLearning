@@ -59,4 +59,21 @@ public:
    /// https://leetcode.com/problems/generate-parentheses/
    ///</summary>
    std::vector<std::string> generateParenthesis(int n);
+
+   //week 27.02 - 5.03
+
+   ///<summary>
+   /// https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+   ///</summary>
+   int removeDuplicates(std::vector<int>& nums);
+
+   ///<summary>
+   /// https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/
+   ///</summary>
+   int strStr(std::string haystack, std::string needle);
+
+   ///<summary>
+   /// https://leetcode.com/problems/search-in-rotated-sorted-array/
+   ///</summary>
+   int search(std::vector<int>& nums, int target);
 };
