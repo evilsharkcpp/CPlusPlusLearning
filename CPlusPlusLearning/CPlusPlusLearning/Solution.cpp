@@ -301,3 +301,134 @@ int Solution::search(std::vector<int>& nums, int target)
    }
    return -1;
 }
+
+int Solution::searchInsert(std::vector<int>& nums, int target)
+{
+   if (target <= nums.front()) return 0;
+   if (target > nums.back()) return nums.size();
+   int startIndex{}, endIndex{ (int)nums.size() - 1 }, middleIndex{};
+   while (startIndex < endIndex)
+   {
+      middleIndex = (endIndex + startIndex) / 2;
+      if (nums[middleIndex] < target && nums[middleIndex + 1] >= target)
+         return middleIndex + 1;
+      if (nums[middleIndex] >= target)
+         endIndex = middleIndex;
+      else
+         startIndex = middleIndex;
+   }
+   return -1;
+}
+
+bool Solution::isPalindrome(int x)
+{
+   if (x < 0 || (x % 10 == 0 && x != 0)) return false;
+   int reverseX{};
+   while (x > reverseX)
+   {
+      reverseX = reverseX * 10 + x % 10;
+      x /= 10;
+   }
+   return x == reverseX || x == reverseX / 10;
+}
+
+int Solution::projectionArea(std::vector<std::vector<int>>& grid)
+{
+   int xyArea{};
+   std::vector<int> xzProjection{}, yzProjection{};
+   for (auto& column : grid)
+   {
+      if (yzProjection.size() < column.size())
+         yzProjection.resize(column.size(), 0);
+      int xzMaxArea{};
+      int i{ 0 };
+      for (auto& row : column)
+      {
+         if (row != 0) xyArea++;
+         yzProjection[i] = std::max(row, yzProjection[i]);
+         xzMaxArea = std::max(xzMaxArea, row);
+         i++;
+      }
+      xzProjection.push_back(xzMaxArea);
+   }
+   int totalArea{ xyArea };
+   for (auto& area : xzProjection)
+      totalArea += area;
+   for (auto& area : yzProjection)
+      totalArea += area;
+   return totalArea;
+}
+
+int Solution::projectionAreaOptimized(std::vector<std::vector<int>>& grid)
+{
+   int totalArea{};
+   for (int i{}; i < grid.size(); i++)
+   {
+      int xzMax{}, yzMax{};
+      for (int j{}; j < grid[i].size(); j++)
+      {
+         if (grid[i][j] > 0)
+            totalArea++;
+         xzMax = std::max(xzMax, grid[i][j]);
+         yzMax = std::max(yzMax, grid[j][i]);
+      }
+      totalArea += xzMax + yzMax;
+   }
+   return totalArea;
+}
+
+bool Solution::isRectangleOverlap(std::vector<int>& firstRect, std::vector<int>& secondRect)
+{
+   int xOverlap{ std::min(firstRect[2], secondRect[2]) - std::max(firstRect[0], secondRect[0]) },
+      yOverlap{ std::min(firstRect[3], secondRect[3]) - std::max(firstRect[1], secondRect[1]) };
+   return xOverlap > 0 && yOverlap > 0;
+}
+
+int Solution::computeArea(int xBottomFirst, int yBottomFirst, int xTopFirst, int yTopFirst,
+   int xBottomSecond, int yBottomSecond, int xTopSecond, int yTopSecond)
+{
+   int xOverlap{ std::min(xTopFirst, xTopSecond) - std::max(xBottomFirst, xBottomSecond) },
+      yOverlap{ std::min(yTopFirst, yTopSecond) - std::max(yBottomFirst, yBottomSecond) },
+      overlapArea{};
+
+   if (xOverlap > 0 && yOverlap > 0)
+      overlapArea = xOverlap * yOverlap;
+   return (xTopFirst - xBottomFirst) * (yTopFirst - yBottomFirst) +
+      (xTopSecond - xBottomSecond) * (yTopSecond - yBottomSecond) - overlapArea;
+}
+
+bool Solution::checkOverlap(int radius, int xCenter, int yCenter,
+   int xBottom, int yBottom, int xTop, int yTop)
+{
+   auto isInside
+   {
+       [=](int xPoint, int yPoint)
+       {
+           return (xPoint - xCenter) * (xPoint - xCenter) +
+                  (yPoint - yCenter) * (yPoint - yCenter) <= radius * radius;
+       }
+   };
+   return isInside(std::max(xBottom, std::min(xCenter, xTop)),
+      std::max(yBottom, std::min(yCenter, yTop)));
+}
+
+bool Solution::validSquare(std::vector<int>& p1, std::vector<int>& p2, std::vector<int>& p3, std::vector<int>& p4)
+{
+   auto computeDist
+   {
+       [](std::vector<int>& p1, std::vector<int>& p2)
+       {
+           return pow((p2[0] - p1[0]), 2) + pow((p2[1] - p1[1]), 2);
+       }
+   };
+   auto isSquare
+   {
+       [=](std::vector<int>& p1, std::vector<int>& p2, std::vector<int>& p3, std::vector<int>& p4)
+       {
+           return computeDist(p1, p2) > 0 && computeDist(p1, p3) > 0 && computeDist(p1, p4) > 0 &&
+           computeDist(p1, p2) == computeDist(p2, p3) && computeDist(p2, p3) == computeDist(p3, p4) &&
+           computeDist(p3, p4) == computeDist(p4, p1) && computeDist(p1, p3) == computeDist(p2, p4);
+       }
+   };
+   return isSquare(p1, p2, p3, p4) || isSquare(p1, p3, p2, p4) || isSquare(p1, p2, p4, p3);
+}

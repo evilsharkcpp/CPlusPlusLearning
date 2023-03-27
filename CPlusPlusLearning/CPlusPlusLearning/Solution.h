@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <cmath>
 #include "ListNode.h"
 
 
@@ -76,4 +77,44 @@ public:
    /// https://leetcode.com/problems/search-in-rotated-sorted-array/
    ///</summary>
    int search(std::vector<int>& nums, int target);
+
+   // day 27.03
+
+   ///<summary>
+   /// https://leetcode.com/problems/search-insert-position
+   ///</summary>
+   int searchInsert(std::vector<int>& nums, int target);
+
+   ///<summary>
+   /// https://leetcode.com/problems/palindrome-number
+   ///</summary>
+   bool isPalindrome(int x);
+
+   ///<summary>
+   /// https://leetcode.com/problems/projection-area-of-3d-shapes
+   ///</summary>
+   int projectionArea(std::vector<std::vector<int>>& grid);
+   int projectionAreaOptimized(std::vector<std::vector<int>>& grid);
+
+   ///<summary>
+   /// https://leetcode.com/problems/rectangle-overlap
+   ///</summary>
+   bool isRectangleOverlap(std::vector<int>& firstRect, std::vector<int>& secondRect);
+
+   ///<summary>
+   /// https://leetcode.com/problems/rectangle-area
+   ///</summary>
+   int computeArea(int xBottomFirst, int yBottomFirst, int xTopFirst, int yTopFirst,
+      int xBottomSecond, int yBottomSecond, int xTopSecond, int yTopSecond);
+
+   ///<summary>
+   /// https://leetcode.com/problems/circle-and-rectangle-overlapping
+   ///</summary>
+   bool checkOverlap(int radius, int xCenter, int yCenter,
+      int xBottom, int yBottom, int xTop, int yTop);
+
+   ///<summary>
+   /// https://leetcode.com/problems/valid-square
+   ///</summary>
+   bool validSquare(std::vector<int>& p1, std::vector<int>& p2, std::vector<int>& p3, std::vector<int>& p4);
 };
