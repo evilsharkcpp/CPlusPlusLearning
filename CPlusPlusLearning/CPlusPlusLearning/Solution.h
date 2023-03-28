@@ -25,7 +25,7 @@ public:
 
    ///<summary>
    /// https://leetcode.com/problems/merge-two-sorted-lists/
-   /// This is func used raw pointers
+   /// On LeetCode List works with raw pointers (including tests)
    ///</summary>
    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2);
 
@@ -43,6 +43,7 @@ public:
 
    ///<summary>
    /// https://leetcode.com/problems/remove-nth-node-from-end-of-list/
+   /// On LeetCode List works with raw pointers (including tests)
    ///</summary>
    ListNode* removeNthFromEnd(ListNode* head, int n);
 
@@ -53,6 +54,7 @@ public:
 
    ///<summary>
    /// https://leetcode.com/problems/merge-k-sorted-lists/
+   /// On LeetCode List works with raw pointers (including tests)
    ///</summary>
    ListNode* mergeKLists(std::vector<ListNode*>& lists);
 
@@ -77,6 +79,7 @@ public:
    /// https://leetcode.com/problems/search-in-rotated-sorted-array/
    ///</summary>
    int search(std::vector<int>& nums, int target);
+
 
    // day 27.03
 
@@ -117,4 +120,40 @@ public:
    /// https://leetcode.com/problems/valid-square
    ///</summary>
    bool validSquare(std::vector<int>& p1, std::vector<int>& p2, std::vector<int>& p3, std::vector<int>& p4);
+
+
+   //28.03
+
+   ///<summary>
+   /// https://leetcode.com/problems/swap-nodes-in-pairs
+   /// On LeetCode List works with raw pointers (including tests)
+   ///</summary>
+   ListNode* swapPairs(ListNode* firstHead);
+
+   ///<summary>
+   /// https://leetcode.com/problems/minimum-time-visiting-all-points
+   ///</summary>
+   int minTimeToVisitAllPoints(std::vector<std::vector<int>>& points);
+
+   ///<summary>
+   /// https://leetcode.com/problems/max-points-on-a-line
+   /// That was too hard:)
+   ///</summary>
+   int maxPoints(std::vector<std::vector<int>>& points);
+
+   ///<summary>
+   /// https://leetcode.com/problems/check-if-it-is-a-straight-line
+   ///</summary>
+   bool checkStraightLine(std::vector<std::vector<int>>& coordinates);
+
+   ///<summary>
+   /// https://leetcode.com/problems/check-if-it-is-a-straight-line
+   /// This solution use fact, that equation of line can write without divisors.
+   ///</summary>
+   bool checkStraightLineAnother(std::vector<std::vector<int>>& coordinates);
+
+   ///<summary>
+   /// https://leetcode.com/problems/remove-element
+   ///</summary>
+   int removeElement(std::vector<int>& nums, int val);
 };

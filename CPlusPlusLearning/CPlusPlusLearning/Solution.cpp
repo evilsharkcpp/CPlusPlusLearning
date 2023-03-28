@@ -5,6 +5,8 @@
 #include <map>
 #include <stack>
 #include <algorithm>
+#include <unordered_map>
+#include <utility>
 
 bool Solution::isMatch(std::string text, std::string pattern)
 {
@@ -431,4 +433,103 @@ bool Solution::validSquare(std::vector<int>& p1, std::vector<int>& p2, std::vect
        }
    };
    return isSquare(p1, p2, p3, p4) || isSquare(p1, p3, p2, p4) || isSquare(p1, p2, p4, p3);
+}
+
+ListNode* Solution::swapPairs(ListNode* firstHead)
+{
+   if (firstHead == nullptr || firstHead->next == nullptr)
+      return firstHead;
+   auto secondHead{ firstHead->next },
+      next{ secondHead->next };
+   secondHead->next = firstHead;
+   firstHead->next = next;
+   firstHead = secondHead;
+   firstHead->next->next = swapPairs(next);
+   return firstHead;
+}
+
+int Solution::minTimeToVisitAllPoints(std::vector<std::vector<int>>& points)
+{
+   auto totalTime{ 0 };
+   for (int i{ 1 }; i < points.size(); i++)
+   {
+      auto dx{ points[i][0] - points[i - 1][0] },
+         dy{ points[i][1] - points[i - 1][1] };
+      totalTime += std::max(abs(dx), abs(dy));
+   }
+   return totalTime;
+}
+
+int Solution::maxPoints(std::vector<std::vector<int>>& points)
+{
+   if (points.size() == 1)
+      return 1;
+
+   int bestCount{};
+   for (auto& p1 : points)
+   {
+      std::unordered_map<double, int> looksup{};
+      for (auto& p2 : points)
+      {
+         auto dx{ p2[0] - p1[0] },
+            dy{ p2[1] - p1[1] };
+         if (dx == 0 && dy == 0)
+            continue;
+         auto k{ atan((double)dy / dx) };
+         looksup[k]++;
+      }
+      for (auto& pair : looksup)
+         bestCount = std::max(bestCount, pair.second + 1);
+   }
+   return bestCount;
+}
+
+bool Solution::checkStraightLine(std::vector<std::vector<int>>& coordinates)
+{
+   auto leftPoint{ coordinates.front() },
+      rightPoint{ coordinates.back() };
+
+   auto dx{ (rightPoint[0] - leftPoint[0]) },
+      dy{ (rightPoint[1] - leftPoint[1]) };
+
+   for (auto& point : coordinates)
+   {
+      auto leftPart{ (double)(point[0] - leftPoint[0]) / dx },
+         rightPart{ (double)(point[1] - leftPoint[1]) / dy };
+      bool isBeenOnAxisX{ ((rightPoint[0] - leftPoint[0]) == 0 && point[0] == leftPoint[0]) },
+         isBeenOnAxisY{ ((rightPoint[1] - leftPoint[1]) == 0 && point[1] == leftPoint[1]) };
+      if ((!isBeenOnAxisX && !isBeenOnAxisY) && leftPart != rightPart)
+         return false;
+   }
+   return true;
+}
+
+bool Solution::checkStraightLineAnother(std::vector<std::vector<int>>& coordinates)
+{
+   auto leftPoint{ coordinates.front() },
+      rightPoint{ coordinates.back() };
+
+   auto dx{ (rightPoint[0] - leftPoint[0]) },
+      dy{ (rightPoint[1] - leftPoint[1]) };
+
+   for (auto& point : coordinates)
+   {
+      auto leftPart{ (double)(point[0] - leftPoint[0]) * dy },
+         rightPart{ (double)(point[1] - leftPoint[1]) * dx };
+      if (leftPart != rightPart)
+         return false;
+   }
+   return true;
+}
+
+int Solution::removeElement(std::vector<int>& nums, int val)
+{
+   int i{};
+   for (auto& num : nums)
+      if (num != val)
+      {
+         nums[i] = num;
+         i++;
+      }
+   return i;
 }
