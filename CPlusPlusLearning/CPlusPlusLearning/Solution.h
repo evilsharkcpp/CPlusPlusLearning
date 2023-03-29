@@ -156,4 +156,33 @@ public:
    /// https://leetcode.com/problems/remove-element
    ///</summary>
    int removeElement(std::vector<int>& nums, int val);
+
+
+   //29.03
+
+   ///<summary>
+   /// https://leetcode.com/problems/minimum-area-rectangle
+   ///</summary>
+   int minAreaRect(std::vector<std::vector<int>>& points);
+
+   ///<summary>
+   /// https://leetcode.com/problems/queries-on-number-of-points-inside-a-circle
+   ///</summary>
+   std::vector<int> countPoints(std::vector<std::vector<int>>& points, 
+      std::vector<std::vector<int>>& queries);
+
+   ///<summary>
+   /// https://leetcode.com/problems/k-closest-points-to-origin
+   ///</summary>
+   std::vector<std::vector<int>> kClosest(std::vector<std::vector<int>>& points, int k);
+
+   ///<summary>
+   /// https://leetcode.com/problems/length-of-last-word
+   ///</summary>
+   int lengthOfLastWord(std::string s);
+
+   ///<summary>
+   /// https://leetcode.com/problems/rotate-image
+   ///</summary>
+   void rotate(std::vector<std::vector<int>>& matrix);
 };

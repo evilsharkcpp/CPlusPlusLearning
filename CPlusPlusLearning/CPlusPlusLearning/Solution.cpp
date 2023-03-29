@@ -6,7 +6,9 @@
 #include <stack>
 #include <algorithm>
 #include <unordered_map>
+#include <unordered_set>
 #include <utility>
+#include <functional>
 
 bool Solution::isMatch(std::string text, std::string pattern)
 {
@@ -532,4 +534,91 @@ int Solution::removeElement(std::vector<int>& nums, int val)
          i++;
       }
    return i;
+}
+
+int Solution::minAreaRect(std::vector<std::vector<int>>& points)
+{
+   struct Hash
+   {
+      size_t operator()(const std::pair<int, int>& x) const
+      {
+         return std::hash<long long>()(((long long)x.first) ^ ((long long)x.second));
+      }
+   };
+   std::unordered_set<std::pair<int, int>, Hash> seen;
+   int result{ std::numeric_limits<int>::max() };
+   for (const auto& p : points)
+   {
+      int x1{ p[0] }, y1{ p[1] };
+      for (auto& pair : seen)
+      {
+         auto x2{ pair.first }, y2{ pair.second };
+         if (seen.count({ x1, y2 }) && seen.count({ x2, y1 }))
+         {
+            int area{ abs(x1 - x2) * abs(y1 - y2) };
+            result = std::min(area, result);
+         }
+      }
+      seen.emplace(x1, y1);
+   }
+   return result == std::numeric_limits<int>::max() ? 0 : result;
+}
+
+std::vector<int> Solution::countPoints(std::vector<std::vector<int>>& points, std::vector<std::vector<int>>& queries)
+{
+   auto isInside
+   {
+       [](std::vector<int>& query, std::vector<int>& point)
+       {
+           return pow((point[0] - query[0]), 2) + pow(point[1] - query[1], 2) <= pow(query[2], 2);
+       }
+   };
+
+   std::vector<int> result{};
+   result.reserve(queries.size());
+   for (auto& query : queries)
+   {
+      int hitsCount{};
+      for (auto& point : points)
+         if (isInside(query, point))
+            hitsCount++;
+      result.push_back(hitsCount);
+   }
+   return result;
+}
+
+std::vector<std::vector<int>> Solution::kClosest(std::vector<std::vector<int>>& points, int k)
+{
+   sort(points.begin(), points.end(),
+      [](std::vector<int>& p, std::vector<int>& q)
+      {
+         return pow(p[0], 2) + pow(p[1], 2) < pow(q[0], 2) + pow(q[1], 2);
+      });
+   return std::vector<std::vector<int>>(points.begin(), points.begin() + k);
+}
+
+int Solution::lengthOfLastWord(std::string s)
+{
+   int length{};
+   for (auto it{ s.rbegin() }; it != s.rend(); it++)
+   {
+      if (*it == ' ' && length > 0)
+         break;
+      if (*it == ' ')
+         continue;
+      length++;
+   }
+   return length;
+}
+
+void Solution::rotate(std::vector<std::vector<int>>& matrix)
+{
+   size_t n{ matrix.size() };
+   for (size_t i{}; i < n / 2; i++)
+      for (size_t j{ i }; j < n - i - 1; j++)
+      {
+         std::swap(matrix[i][j], matrix[j][n - 1 - i]);
+         std::swap(matrix[i][j], matrix[n - 1 - i][n - 1 - j]);
+         std::swap(matrix[i][j], matrix[n - 1 - j][i]);
+      }
 }
