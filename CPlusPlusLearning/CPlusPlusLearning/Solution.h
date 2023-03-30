@@ -185,4 +185,31 @@ public:
    /// https://leetcode.com/problems/rotate-image
    ///</summary>
    void rotate(std::vector<std::vector<int>>& matrix);
+
+   //30.03
+
+   ///<summary>
+   /// https://leetcode.com/problems/largest-triangle-area
+   ///</summary>
+   double largestTriangleArea(std::vector<std::vector<int>>& points);
+
+   ///<summary>
+   /// https://leetcode.com/problems/matrix-cells-in-distance-order
+   ///</summary>
+   std::vector<std::vector<int>> allCellsDistOrder(int rows, int cols, int rCenter, int cCenter);
+
+   ///<summary>
+   /// https://leetcode.com/problems/permutations
+   ///</summary>
+   std::vector<std::vector<int>> permute(std::vector<int>& nums);
+
+   ///<summary>
+   /// https://leetcode.com/problems/valid-boomerang
+   ///</summary>
+   bool isBoomerang(std::vector<std::vector<int>>& points);
+
+   ///<summary>
+   /// https://leetcode.com/problems/valid-boomerang
+   ///</summary>
+   int maximumDetonation(std::vector<std::vector<int>>& bombs);
 };

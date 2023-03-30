@@ -622,3 +622,100 @@ void Solution::rotate(std::vector<std::vector<int>>& matrix)
          std::swap(matrix[i][j], matrix[n - 1 - j][i]);
       }
 }
+
+double Solution::largestTriangleArea(std::vector<std::vector<int>>& points)
+{
+   auto getSquare
+   {
+       [](std::vector<int> a, std::vector<int> b, std::vector<int> c)
+       {
+           std::vector<int> vFirst { b[0] - a[0], b[1] - a[1] },
+                       vSecond { c[0] - a[0], c[1] - a[1] };
+           return abs(1.0 / 2 * (vFirst[0] * vSecond[1] - vFirst[1] * vSecond[0]));
+       }
+   };
+   double maxSquare{};
+   for (int i{}; i < points.size() - 2; i++)
+      for (int j{ i + 1 }; j < points.size() - 1; j++)
+         for (int k{ j + 1 }; k < points.size(); k++)
+            maxSquare = std::max(maxSquare, getSquare(points[i], points[j], points[k]));
+   return maxSquare;
+}
+
+std::vector<std::vector<int>> Solution::allCellsDistOrder(int rows, int cols, int rCenter, int cCenter)
+{
+   std::vector<std::vector<int>> result;
+   std::multimap<int, std::vector<int>> dists;
+   for (int row{}; row < rows; row++)
+      for (int col{}; col < cols; col++)
+         result.push_back({ row, col });
+   sort(result.begin(), result.end(),
+      [&](std::vector<int>& a, std::vector<int>& b)
+      {
+         return abs(rCenter - a[0]) + abs(cCenter - a[1]) <
+         abs(rCenter - b[0]) + abs(cCenter - b[1]);
+      });
+   return result;
+}
+
+std::vector<std::vector<int>> Solution::permute(std::vector<int>& nums)
+{
+   std::vector<std::vector<int>> result{};
+   if (nums.size() == 1)
+      return { nums };
+   for (auto& num : nums)
+   {
+      std::swap(num, nums.front());
+      auto out{ std::vector<int>(nums.begin() + 1, nums.end()) };
+      auto comb{ permute(out) };
+      std::swap(num, nums.front());
+      for (auto& item : comb)
+      {
+         item.insert(item.begin(), num);
+         result.push_back(item);
+      }
+
+   }
+   return result;
+}
+
+bool Solution::isBoomerang(std::vector<std::vector<int>>& points)
+{
+   std::vector<int> a{ points[1][0] - points[0][0], points[1][1] - points[0][1] },
+      b{ points[2][0] - points[0][0], points[2][1] - points[0][1] };
+   return abs(a[0] * b[1] - a[1] * b[0]) > 0;
+}
+
+int Solution::maximumDetonation(std::vector<std::vector<int>>& bombs)
+{
+   auto isInside
+   {
+       [](std::vector<int>& bombDetonated, std::vector<int>& bomb)
+       {
+           return pow(bombDetonated[0] - bomb[0], 2) +
+                  pow(bombDetonated[1] - bomb[1], 2) <=
+                  pow(bombDetonated[2], 2);
+       }
+   };
+   size_t detonatedMaxCount{};
+   std::unordered_set<int> detonatedBombs{};
+   for (size_t bombFirstIndex{}; bombFirstIndex < bombs.size(); bombFirstIndex++)
+   {
+      detonatedBombs.clear();
+      detonatedBombs.emplace(bombFirstIndex);
+      auto detonatedBomb{ detonatedBombs.begin() };
+      while (detonatedBomb != detonatedBombs.end())
+      {
+         auto previousSize{ detonatedBombs.size() };
+         for (size_t bombIndex{}; bombIndex < bombs.size(); bombIndex++)
+            if (detonatedBombs.count(bombIndex) == 0 && isInside(bombs[*detonatedBomb], bombs[bombIndex]))
+               detonatedBombs.emplace(bombIndex);
+         if (previousSize == detonatedBombs.size())
+            detonatedBomb++;
+         else
+            detonatedBomb = detonatedBombs.begin();
+      }
+      detonatedMaxCount = std::max(detonatedMaxCount, detonatedBombs.size());
+   }
+   return detonatedMaxCount;
+}
