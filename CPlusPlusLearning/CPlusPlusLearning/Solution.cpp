@@ -719,3 +719,75 @@ int Solution::maximumDetonation(std::vector<std::vector<int>>& bombs)
    }
    return detonatedMaxCount;
 }
+
+int Solution::mirrorReflection(int p, int q)
+{
+   std::function<int(int, int)> gcd
+   {
+      [&](int a, int b)
+      {
+         return b == 0 ? a : gcd(b, a % b);
+      }
+   };
+   int m{ q / gcd(p, q) },
+      n{ p / gcd(p, q) };
+   switch (m % 2)
+   {
+   case 0:
+      return n % 2 == 1 ? 0 : -1;
+      break;
+   case 1:
+      return n % 2 == 1 ? 1 : 2;
+      break;
+   }
+   return -1;
+}
+
+int Solution::minimumLines(std::vector<std::vector<int>>& stockPrices)
+{
+   std::function<int(int, int)> gcd
+   {
+      [&](int a, int b)
+      {
+         return b == 0 ? a : gcd(b, a % b);
+      }
+   };
+   sort(stockPrices.begin(), stockPrices.end());
+   if (stockPrices.size() < 2)
+      return 0;
+   int counter{ 0 };
+   int dx{ std::numeric_limits<int>::max() },
+      dy{ std::numeric_limits<int>::max() };
+   for (int i{ 1 }; i < stockPrices.size(); i++)
+   {
+      int tx{ stockPrices[i][0] - stockPrices[i - 1][0] },
+         ty{ stockPrices[i][1] - stockPrices[i - 1][1] },
+         g{ gcd(tx, ty) };
+      tx /= g;
+      ty /= g;
+      counter += tx != dx || ty != dy;
+      dx = tx;
+      dy = ty;
+   }
+   return counter;
+}
+
+std::string Solution::addBinary(std::string a, std::string b)
+{
+   std::string result{};
+   int carry{};
+   int i{ (int)a.length() - 1 };
+   int j{ (int)b.length() - 1 };
+
+   while (i >= 0 || j >= 0 || carry)
+   {
+      if (i >= 0)
+         carry += a[i--] - '0';
+      if (j >= 0)
+         carry += b[j--] - '0';
+      result += carry % 2 + '0';
+      carry /= 2;
+   }
+   reverse(result.begin(), result.end());
+   return result;
+}

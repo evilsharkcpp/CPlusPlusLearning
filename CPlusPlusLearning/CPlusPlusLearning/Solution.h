@@ -212,4 +212,40 @@ public:
    /// https://leetcode.com/problems/valid-boomerang
    ///</summary>
    int maximumDetonation(std::vector<std::vector<int>>& bombs);
+
+   //31.03
+
+   ///<summary>
+   /// https://leetcode.com/problems/mirror-reflection
+   ///</summary>
+   int mirrorReflection(int p, int q);
+
+   ///<summary>
+   /// https://leetcode.com/problems/minimum-lines-to-represent-a-line-chart
+   ///</summary>
+   int minimumLines(std::vector<std::vector<int>>& stockPrices);
+
+   ///<summary>
+   /// https://leetcode.com/problems/add-binary
+   ///</summary>
+   std::string addBinary(std::string a, std::string b);
+
+   ///<summary>
+   /// https://leetcode.com/problems/plus-one
+   ///</summary>
+   std::vector<int> plusOne(std::vector<int>& digits)
+   {
+      auto result{ std::vector<int>(digits) };
+      for (auto it{ result.rbegin() }; it != result.rend(); it++)
+         if (*it == 9)
+            *it = 0;
+         else
+         {
+            *it += 1;
+            break;
+         }
+      if (result.front() == 0)
+         result.insert(result.begin(), 1);
+      return result;
+   }
 };
