@@ -168,7 +168,7 @@ public:
    ///<summary>
    /// https://leetcode.com/problems/queries-on-number-of-points-inside-a-circle
    ///</summary>
-   std::vector<int> countPoints(std::vector<std::vector<int>>& points, 
+   std::vector<int> countPoints(std::vector<std::vector<int>>& points,
       std::vector<std::vector<int>>& queries);
 
    ///<summary>
@@ -233,19 +233,41 @@ public:
    ///<summary>
    /// https://leetcode.com/problems/plus-one
    ///</summary>
-   std::vector<int> plusOne(std::vector<int>& digits)
-   {
-      auto result{ std::vector<int>(digits) };
-      for (auto it{ result.rbegin() }; it != result.rend(); it++)
-         if (*it == 9)
-            *it = 0;
-         else
-         {
-            *it += 1;
-            break;
-         }
-      if (result.front() == 0)
-         result.insert(result.begin(), 1);
-      return result;
-   }
+   std::vector<int> plusOne(std::vector<int>& digits);
+
+   // 01.04
+
+   ///<summary>
+   /// https://leetcode.com/problems/surface-area-of-3d-shapes
+   ///</summary>
+   int surfaceArea(const std::vector<std::vector<int>>& grid);
+
+   ///<summary>
+   /// https://leetcode.com/problems/count-lattice-points-inside-a-circle
+   ///</summary>
+   int countLatticePoints(const std::vector<std::vector<int>>& circles);
+   int countLatticePointsOptimized(const std::vector<std::vector<int>>& circles);
+
+   ///<summary>
+   /// https://leetcode.com/problems/climbing-stairs
+   ///</summary>
+   int climbStairs(int n);
+   //This method not contains all middle results
+   int climbStairsOptimizedMemory(int n);
+
+   ///<summary>
+   /// https://leetcode.com/problems/single-number
+   ///</summary>
+   int singleNumber(std::vector<int>& nums);
+   int singleNumberBitwiseOr(std::vector<int>& nums);
+
+   ///<summary>
+   /// https://leetcode.com/problems/remove-duplicates-from-sorted-list
+   /// LeetCode used raw pointers
+   ///</summary>
+   ListNode* deleteDuplicatesRecursive(ListNode* head);
+   ListNode* deleteDuplicatesIntoInput(ListNode* head);
+   //This method create new list and add nodes without duplicates
+   ListNode* deleteDuplicates(ListNode* head);
+
 };

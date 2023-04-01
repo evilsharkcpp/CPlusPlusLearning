@@ -791,3 +791,186 @@ std::string Solution::addBinary(std::string a, std::string b)
    reverse(result.begin(), result.end());
    return result;
 }
+
+std::vector<int> Solution::plusOne(std::vector<int>& digits)
+{
+   auto result{ std::vector<int>(digits) };
+   for (auto it{ result.rbegin() }; it != result.rend(); it++)
+      if (*it == 9)
+         *it = 0;
+      else
+      {
+         *it += 1;
+         break;
+      }
+   if (result.front() == 0)
+      result.insert(result.begin(), 1);
+   return result;
+}
+
+int Solution::surfaceArea(const std::vector<std::vector<int>>& grid)
+{
+   int areaTotal{};
+   size_t size{ grid.size() };
+   for (int i = 0; i < size; ++i)
+      for (int j = 0; j < size; ++j)
+      {
+         if (grid[i][j] != 0)
+            areaTotal += grid[i][j] * 4 + 2;
+         if (i != 0)
+            areaTotal -= std::min(grid[i][j], grid[i - 1][j]) * 2;
+         if (j != 0)
+            areaTotal -= std::min(grid[i][j], grid[i][j - 1]) * 2;
+      }
+   return areaTotal;
+}
+
+int Solution::countLatticePoints(const std::vector<std::vector<int>>& circles)
+{
+   auto isInside
+   {
+       [](const std::vector<int>& circle, int x, int y)
+       {
+           return pow(x - circle[0], 2) + pow(y - circle[1], 2) <= pow(circle[2], 2);
+       }
+   };
+   std::set<std::pair<int, int>> points{};
+   std::set<std::vector<int>> seen{};
+   for (const auto& circle : circles)
+   {
+      if (seen.count(circle))
+         continue;
+      seen.insert(circle);
+      int xBottom{ circle[0] - circle[2] },
+         yBottom{ circle[1] - circle[2] },
+         xTop{ circle[0] + circle[2] },
+         yTop{ circle[1] + circle[2] };
+      for (auto x{ xBottom }; x <= xTop; x++)
+         for (auto y{ yBottom }; y <= yTop; y++)
+            if (isInside(circle, x, y))
+               points.insert({ x,y });
+   }
+   return points.size();
+}
+
+int Solution::countLatticePointsOptimized(const std::vector<std::vector<int>>& circles)
+{
+   int xBottom{ std::numeric_limits<int>::max() },
+      yBottom{ std::numeric_limits<int>::max() },
+      xTop{ std::numeric_limits<int>::min() },
+      yTop{ std::numeric_limits<int>::min() };
+   for (const auto& circle : circles)
+   {
+      xBottom = std::min(xBottom, circle[0] - circle[2]);
+      yBottom = std::min(yBottom, circle[1] - circle[2]);
+      xTop = std::max(xTop, circle[0] + circle[2]);
+      yTop = std::max(yTop, circle[1] + circle[2]);
+   }
+   int counter{};
+   for (auto x{ xBottom }; x <= xTop; x++)
+      for (auto y{ yBottom }; y <= yTop; y++)
+         if (any_of(circles.begin(), circles.end(),
+            [&x, &y](const std::vector<int>& circle)
+            {
+               return pow(x - circle[0], 2) + pow(y - circle[1], 2) <=
+               pow(circle[2], 2);
+            }))
+            counter++;
+            return counter;
+}
+
+int Solution::climbStairs(int n)
+{
+   std::vector<int> dp{};
+   dp.reserve(n + 1);
+   dp.push_back(1);
+   dp.push_back(1);
+   for (int i{ 2 }; i <= n; i++)
+      dp.push_back(dp[i - 1] + dp[i - 2]);
+   return dp.back();
+}
+
+int Solution::climbStairsOptimizedMemory(int n)
+{
+   int numberFirst{ 1 }, numberSecond{ 1 }, result{ 1 };
+   for (int i{ 2 }; i <= n; i++)
+   {
+      result = numberFirst + numberSecond;
+      numberFirst = numberSecond;
+      numberSecond = result;
+   }
+   return result;
+}
+
+int Solution::singleNumber(std::vector<int>& nums)
+{
+   std::unordered_map<int, size_t> seen{};
+   for (const auto& num : nums)
+      seen[num]++;
+   for (const auto& item : seen)
+      if (item.second == 1)
+         return item.first;
+   return -1;
+}
+
+int Solution::singleNumberBitwiseOr(std::vector<int>& nums)
+{
+   int candidate{};
+   for (const auto& num : nums)
+      candidate ^= num;
+   return candidate;
+}
+
+ListNode* Solution::deleteDuplicatesRecursive(ListNode* head)
+{
+   if (head == nullptr)
+      return nullptr;
+   if (head->next == nullptr)
+      return head;
+   ListNode* node{ nullptr };
+   if (head->val == head->next->val)
+   {
+      node = head->next;
+      head->next = node->next;
+      delete node;
+      deleteDuplicatesRecursive(head);
+   }
+   else
+      deleteDuplicatesRecursive(head->next);
+   return head;
+}
+
+ListNode* Solution::deleteDuplicatesIntoInput(ListNode* head)
+{
+   auto current{ head };
+   while (current != nullptr && current->next != nullptr)
+   {
+      if (current->val == current->next->val)
+      {
+         auto node{ current->next };
+         current->next = node->next;
+         delete node;
+      }
+      else
+         current = current->next;
+   }
+   return head;
+}
+
+ListNode* Solution::deleteDuplicates(ListNode* head)
+{
+   if (head == nullptr)
+      return head;
+   auto root{ new ListNode(head->val) };
+   auto current{ head }, rootCurrent{ root };
+   while (current != nullptr)
+   {
+      if (current->val != rootCurrent->val)
+      {
+         rootCurrent->next = new ListNode(current->val);
+         rootCurrent = rootCurrent->next;
+      }
+      current = current->next;
+   }
+   return root;
+}
