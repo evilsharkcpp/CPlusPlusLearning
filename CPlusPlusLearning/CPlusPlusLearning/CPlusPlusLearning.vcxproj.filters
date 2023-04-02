@@ -35,5 +35,8 @@
     <ClInclude Include="Solution.h">
       <Filter>Файлы заголовков\LeetCode</Filter>
     </ClInclude>
+    <ClInclude Include="TreeNode.h">
+      <Filter>Файлы заголовков\LeetCode</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
