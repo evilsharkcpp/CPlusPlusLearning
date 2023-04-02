@@ -974,3 +974,173 @@ ListNode* Solution::deleteDuplicates(ListNode* head)
    }
    return root;
 }
+
+bool Solution::hasCycle(ListNode* head)
+{
+   std::unordered_set<ListNode*> seen{};
+   while (head != nullptr)
+   {
+      if (seen.count(head) != 0)
+         return true;
+      seen.emplace(head);
+      head = head->next;
+   }
+   return false;
+}
+
+bool Solution::hasCycleConstantMemory(ListNode* head)
+{
+   auto fast{ head }, slow{ head };
+   while (fast != nullptr && fast->next != nullptr)
+   {
+      fast = fast->next;
+      if (fast != nullptr)
+         fast = fast->next;
+      slow = slow->next;
+      if (fast == slow)
+         return true;
+   }
+   return false;
+}
+
+std::vector<int> Solution::inorderTraversalRecursive(TreeNode* root)
+{
+   std::vector<int> result{};
+   std::function<void(TreeNode*)> inOrder
+   {
+       [&](TreeNode* node)
+       {
+           if (node == nullptr)
+               return;
+           inOrder(node->left);
+           result.push_back(node->val);
+           inOrder(node->right);
+       }
+   };
+   inOrder(root);
+   return result;
+}
+
+std::vector<int> Solution::inorderTraversal(TreeNode* root)
+{
+   std::vector<int> result{};
+   std::stack<TreeNode*> roots{};
+   while (!roots.empty() || root != nullptr)
+   {
+      if (root != nullptr)
+      {
+         roots.push(root);
+         root = root->left;
+      }
+      else
+      {
+         root = roots.top();
+         roots.pop();
+         result.push_back(root->val);
+         root = root->right;
+      }
+   }
+   return result;
+}
+
+int Solution::maxProfit(std::vector<int>& prices)
+{
+   int priceMin{ std::numeric_limits<int>::max() };
+   int profitMax{};
+   for (const auto& price : prices)
+   {
+      priceMin = std::min(priceMin, price);
+      profitMax = std::max(profitMax, price - priceMin);
+   }
+   return profitMax;
+}
+
+std::vector<std::vector<int>> Solution::generate(int numRows)
+{
+   std::vector<std::vector<int>> result{};
+   result.reserve(numRows);
+   result.push_back({ 1 });
+   for (size_t i{ 1 }; i < numRows; i++)
+   {
+      std::vector<int> rowNew{};
+      rowNew.reserve(i + 1);
+      rowNew.push_back(1);
+      for (size_t j{ 1 }; j < result[i - 1].size(); j++)
+         rowNew.push_back(result[i - 1][j] + result[i - 1][j - 1]);
+      rowNew.push_back(1);
+      result.push_back(rowNew);
+   }
+   return result;
+}
+
+std::vector<int> Solution::getRow(int rowIndex)
+{
+   std::vector<int> rowPrevious{ 1 };
+   for (size_t i{}; i < rowIndex; i++)
+   {
+      std::vector<int> row{};
+      row.reserve(i + 1);
+      row.push_back(1);
+      for (size_t j{ 1 }; j < rowPrevious.size(); j++)
+         row.push_back(rowPrevious[j] + rowPrevious[j - 1]);
+      row.push_back(1);
+      rowPrevious = move(row);
+   }
+   return rowPrevious;
+}
+
+bool Solution::isPalindrome(std::string s)
+{
+   std::string str{};
+   for (const auto& ch : s)
+   {
+      if (ch >= 'A' && ch <= 'Z')
+         str += ch - ('Z' - 'z');
+      if (ch >= 'a' && ch <= 'z' || ch >= '0' && ch <= '9')
+         str += ch;
+   }
+
+   auto len{ str.length() };
+   for (size_t i{}; i < len / 2; i++)
+      if (str[i] != str[len - 1 - i])
+         return false;
+   return true;
+}
+
+void Solution::merge(std::vector<int>& nums1, int m,
+   std::vector<int>& nums2, int n)
+{
+   int i{ m - 1 }, j{ n - 1 },
+      k{ m + n - 1 };
+
+   while (i >= 0 && j >= 0)
+   {
+      if (nums1[i] > nums2[j])
+      {
+         nums1[k] = nums1[i];
+         i--;
+         k--;
+      }
+      else
+      {
+         nums1[k] = nums2[j];
+         j--;
+         k--;
+      }
+   }
+   while (j >= 0)
+   {
+      nums1[k] = nums2[j];
+      j--;
+      k--;
+   }
+}
+
+std::vector<double> Solution::SubSolution::randPoint()
+{
+   std::vector<double> pointRandom(2);
+   double r{ sqrt(_uni(_rng)) * _r }, rad{ 2 * PI * _uni(_rng) };
+   pointRandom[0] = _x + r * cos(rad);
+   pointRandom[1] = _y + r * sin(rad);
+   return pointRandom;
+}

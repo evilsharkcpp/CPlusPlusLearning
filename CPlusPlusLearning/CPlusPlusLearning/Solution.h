@@ -1,9 +1,11 @@
 #pragma once
+#include "ListNode.h"
+#include "TreeNode.h"
+
 #include <string>
 #include <vector>
 #include <cmath>
-#include "ListNode.h"
-
+#include <random>
 
 class Solution
 {
@@ -270,4 +272,61 @@ public:
    //This method create new list and add nodes without duplicates
    ListNode* deleteDuplicates(ListNode* head);
 
+   //02.04
+
+   ///<summary>
+   /// https://leetcode.com/problems/linked-list-cycle
+   /// LeetCode used raw pointers
+   ///</summary>
+   bool hasCycle(ListNode* head);
+   bool hasCycleConstantMemory(ListNode* head);
+
+   ///<summary>
+   /// https://leetcode.com/problems/binary-tree-inorder-traversal
+   /// LeetCode used raw pointers
+   ///</summary>
+   std::vector<int> inorderTraversalRecursive(TreeNode* root);
+   std::vector<int> inorderTraversal(TreeNode* root);
+
+   ///<summary>
+   /// https://leetcode.com/problems/best-time-to-buy-and-sell-stock
+   ///</summary>
+   int maxProfit(std::vector<int>& prices);
+
+   ///<summary>
+   /// https://leetcode.com/problems/pascals-triangle
+   ///</summary>
+   std::vector<std::vector<int>> generate(int numRows);
+
+   ///<summary>
+   /// https://leetcode.com/problems/pascals-triangle-ii
+   ///</summary>
+   std::vector<int> getRow(int rowIndex);
+
+   ///<summary>
+   /// https://leetcode.com/problems/valid-palindrome
+   ///</summary>
+   bool isPalindrome(std::string s);
+
+   ///<summary>
+   /// https://leetcode.com/problems/merge-sorted-array
+   ///</summary>
+   void merge(std::vector<int>& nums1, int m,
+      std::vector<int>& nums2, int n);
+
+   ///<summary>
+   /// https://leetcode.com/problems/generate-random-point-in-a-circle
+   /// This problem use Solution constructor. I create sub class for this. 
+   ///</summary>
+   class SubSolution
+   {
+      double _r, _x, _y;
+      std::mt19937 _rng{ std::random_device{}() };
+      std::uniform_real_distribution<double> _uni{ 0, 1 };
+      const double PI{ acos(-1.0) };
+   public:
+      SubSolution(double radius, double xCenter, double yCenter) :
+         _r(radius), _x(xCenter), _y(yCenter) {}
+      std::vector<double> randPoint();
+   };
 };
