@@ -181,6 +181,11 @@
     <ClCompile Include="Solution050.cpp" />
     <ClCompile Include="Solution051.cpp" />
     <ClCompile Include="Solution052.cpp" />
+    <ClCompile Include="Solution053.cpp" />
+    <ClCompile Include="Solution054.cpp" />
+    <ClCompile Include="Solution055.cpp" />
+    <ClCompile Include="Solution056.cpp" />
+    <ClCompile Include="Solution057.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Solution001.h" />
@@ -235,6 +240,11 @@
     <ClInclude Include="Solution050.h" />
     <ClInclude Include="Solution051.h" />
     <ClInclude Include="Solution052.h" />
+    <ClInclude Include="Solution053.h" />
+    <ClInclude Include="Solution054.h" />
+    <ClInclude Include="Solution055.h" />
+    <ClInclude Include="Solution056.h" />
+    <ClInclude Include="Solution057.h" />
     <ClInclude Include="TreeNode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
