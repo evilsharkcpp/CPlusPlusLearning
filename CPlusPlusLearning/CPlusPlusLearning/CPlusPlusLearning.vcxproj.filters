@@ -201,6 +201,21 @@
     <ClCompile Include="Solution057.cpp">
       <Filter>Исходные файлы\LeetCode</Filter>
     </ClCompile>
+    <ClCompile Include="Solution062.cpp">
+      <Filter>Исходные файлы\LeetCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Solution061.cpp">
+      <Filter>Исходные файлы\LeetCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Solution060.cpp">
+      <Filter>Исходные файлы\LeetCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Solution059.cpp">
+      <Filter>Исходные файлы\LeetCode</Filter>
+    </ClCompile>
+    <ClCompile Include="Solution058.cpp">
+      <Filter>Исходные файлы\LeetCode</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TreeNode.h">
@@ -375,6 +390,21 @@
       <Filter>Файлы заголовков\LeetCode</Filter>
     </ClInclude>
     <ClInclude Include="Solution057.h">
+      <Filter>Файлы заголовков\LeetCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Solution058.h">
+      <Filter>Файлы заголовков\LeetCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Solution059.h">
+      <Filter>Файлы заголовков\LeetCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Solution060.h">
+      <Filter>Файлы заголовков\LeetCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Solution061.h">
+      <Filter>Файлы заголовков\LeetCode</Filter>
+    </ClInclude>
+    <ClInclude Include="Solution062.h">
       <Filter>Файлы заголовков\LeetCode</Filter>
     </ClInclude>
   </ItemGroup>
