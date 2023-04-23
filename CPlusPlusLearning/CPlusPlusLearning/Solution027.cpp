@@ -1,4 +1,4 @@
-#include "Solution027.h"
+#include "Solution027.hpp"
 
 std::vector<int> Solution027::countPoints(std::vector<std::vector<int>>& points,
    std::vector<std::vector<int>>& queries)

@@ -1,4 +1,4 @@
-#include "Solution035.h"
+#include "Solution035.hpp"
 #include <unordered_set>
 
 int Solution035::maximumDetonation(std::vector<std::vector<int>>& bombs)

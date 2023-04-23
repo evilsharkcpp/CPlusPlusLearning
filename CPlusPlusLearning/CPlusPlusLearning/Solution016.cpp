@@ -1,4 +1,4 @@
-#include "Solution016.h"
+#include "Solution016.hpp"
 
 int Solution016::projectionArea(std::vector<std::vector<int>>& grid)
 {

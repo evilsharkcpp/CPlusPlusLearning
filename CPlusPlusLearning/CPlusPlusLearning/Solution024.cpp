@@ -1,4 +1,4 @@
-#include "Solution024.h"
+#include "Solution024.hpp"
 
 bool Solution024::checkStraightLine(std::vector<std::vector<int>>& coordinates)
 {

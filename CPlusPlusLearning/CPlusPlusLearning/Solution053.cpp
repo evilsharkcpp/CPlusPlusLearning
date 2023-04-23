@@ -1,4 +1,4 @@
-#include "Solution053.h"
+#include "Solution053.hpp"
 #include <cmath>
 
 bool Solution053::isHappy(int n)

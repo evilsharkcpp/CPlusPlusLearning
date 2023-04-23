@@ -1,4 +1,4 @@
-#include "Solution041.h"
+#include "Solution041.hpp"
 #include <set>
 #include <algorithm>
 

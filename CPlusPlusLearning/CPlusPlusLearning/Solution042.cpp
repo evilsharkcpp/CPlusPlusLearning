@@ -1,4 +1,4 @@
-#include "Solution042.h"
+#include "Solution042.hpp"
 #include <vector>
 
 int Solution042::climbStairs(int n)

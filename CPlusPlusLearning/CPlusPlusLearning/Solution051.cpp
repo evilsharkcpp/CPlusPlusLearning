@@ -1,4 +1,4 @@
-#include "Solution051.h"
+#include "Solution051.hpp"
 
 void Solution051::merge(std::vector<int>& nums1, int m,
    std::vector<int>& nums2, int n)

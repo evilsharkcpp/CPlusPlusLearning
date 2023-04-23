@@ -1,4 +1,4 @@
-#include "Solution008.h"
+#include "Solution008.hpp"
 #include <map>
 #include <stack>
 

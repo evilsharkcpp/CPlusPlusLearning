@@ -1,4 +1,4 @@
-#include "Solution020.h"
+#include "Solution020.hpp"
 
 bool Solution020::validSquare(std::vector<int>& p1, std::vector<int>& p2,
    std::vector<int>& p3, std::vector<int>& p4)

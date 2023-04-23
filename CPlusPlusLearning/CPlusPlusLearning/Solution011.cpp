@@ -1,4 +1,4 @@
-#include "Solution011.h"
+#include "Solution011.hpp"
 
 int Solution011::removeDuplicates(std::vector<int>& nums)
 {

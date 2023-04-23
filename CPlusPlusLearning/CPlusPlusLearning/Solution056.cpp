@@ -1,4 +1,4 @@
-#include "Solution056.h"
+#include "Solution056.hpp"
 #include <unordered_map>
 
 int Solution056::majorityElementWithHashMap(std::vector<int>& nums)

@@ -1,4 +1,4 @@
-#include "Solution028.h"
+#include "Solution028.hpp"
 #include <algorithm>
 
 std::vector<std::vector<int>> Solution028::kClosest(std::vector<std::vector<int>>& points, int k)

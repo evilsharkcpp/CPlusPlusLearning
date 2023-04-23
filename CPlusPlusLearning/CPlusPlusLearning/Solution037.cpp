@@ -1,4 +1,4 @@
-#include "Solution037.h"
+#include "Solution037.hpp"
 #include <functional>
 #include <algorithm>
 

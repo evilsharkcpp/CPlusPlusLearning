@@ -1,4 +1,4 @@
-#include "Solution032.h"
+#include "Solution032.hpp"
 #include <map>
 #include <algorithm>
 

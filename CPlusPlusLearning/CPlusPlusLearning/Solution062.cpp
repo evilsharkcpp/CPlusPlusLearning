@@ -1,4 +1,4 @@
-#include "Solution062.h"
+#include "Solution062.hpp"
 #include <vector>
 
 std::string Solution062::intToRomanWithTable(int num)

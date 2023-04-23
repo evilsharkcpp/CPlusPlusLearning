@@ -1,4 +1,4 @@
-#include "Solution018.h"
+#include "Solution018.hpp"
 #include <utility>
 
 int Solution018::computeArea(int xBottomFirst, int yBottomFirst, int xTopFirst, int yTopFirst,

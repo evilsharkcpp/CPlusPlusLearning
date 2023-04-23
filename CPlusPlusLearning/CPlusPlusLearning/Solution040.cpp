@@ -1,4 +1,4 @@
-#include "Solution040.h"
+#include "Solution040.hpp"
 
 int Solution040::surfaceArea(const std::vector<std::vector<int>>& grid)
 {

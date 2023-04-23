@@ -1,4 +1,4 @@
-#include "Solution038.h"
+#include "Solution038.hpp"
 
 std::string Solution038::addBinary(std::string a, std::string b)
 {

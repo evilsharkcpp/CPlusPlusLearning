@@ -1,4 +1,4 @@
-#include "Solution004.h"
+#include "Solution004.hpp"
 
 ListNode* Solution004::mergeTwoLists(ListNode* list1, ListNode* list2)
 {

@@ -1,4 +1,4 @@
-#include "Solution031.h"
+#include "Solution031.hpp"
 
 double Solution031::largestTriangleArea(std::vector<std::vector<int>>& points)
 {

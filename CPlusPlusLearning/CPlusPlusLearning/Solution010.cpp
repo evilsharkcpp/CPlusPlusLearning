@@ -1,4 +1,4 @@
-#include "Solution010.h"
+#include "Solution010.hpp"
 
 std::vector<std::string> Solution010::generateParenthesis(int n)
 {

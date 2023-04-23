@@ -1,4 +1,4 @@
-#include "Solution012.h"
+#include "Solution012.hpp"
 
 int Solution012::strStr(std::string haystack, std::string needle)
 {

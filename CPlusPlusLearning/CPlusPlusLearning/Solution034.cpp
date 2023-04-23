@@ -1,4 +1,4 @@
-#include "Solution034.h"
+#include "Solution034.hpp"
 
 bool Solution034::isBoomerang(std::vector<std::vector<int>>& points)
 {

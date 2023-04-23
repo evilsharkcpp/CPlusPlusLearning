@@ -1,4 +1,4 @@
-#include "Solution023.h"
+#include "Solution023.hpp"
 #include <unordered_map>
 
 int Solution023::maxPoints(std::vector<std::vector<int>>& points)

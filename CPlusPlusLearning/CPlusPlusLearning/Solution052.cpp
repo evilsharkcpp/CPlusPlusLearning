@@ -1,4 +1,4 @@
-#include "Solution052.h"
+#include "Solution052.hpp"
 
 std::vector<double> Solution052::randPoint()
 {

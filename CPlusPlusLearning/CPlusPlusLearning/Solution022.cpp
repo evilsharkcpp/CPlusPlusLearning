@@ -1,4 +1,4 @@
-#include "Solution022.h"
+#include "Solution022.hpp"
 
 int Solution022::minTimeToVisitAllPoints(std::vector<std::vector<int>>& points)
 {

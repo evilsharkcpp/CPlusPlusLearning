@@ -1,4 +1,4 @@
-#include "Solution049.h"
+#include "Solution049.hpp"
 
 std::vector<int> Solution049::getRow(int rowIndex)
 {

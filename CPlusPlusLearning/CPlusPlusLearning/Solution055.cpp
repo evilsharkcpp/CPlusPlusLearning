@@ -1,4 +1,4 @@
-#include "Solution055.h"
+#include "Solution055.hpp"
 
 std::string Solution055::convertToTitle(int columnNumber)
 {

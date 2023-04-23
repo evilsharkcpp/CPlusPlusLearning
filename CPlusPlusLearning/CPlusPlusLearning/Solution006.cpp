@@ -1,4 +1,4 @@
-#include "Solution006.h"
+#include "Solution006.hpp"
 #include <queue>
 #include <map>
 

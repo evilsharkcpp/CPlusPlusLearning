@@ -1,4 +1,4 @@
-#include "Solution026.h"
+#include "Solution026.hpp"
 #include <unordered_set>
 
 int Solution026::minAreaRect(std::vector<std::vector<int>>& points)

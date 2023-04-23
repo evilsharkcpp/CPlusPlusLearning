@@ -1,4 +1,4 @@
-#include "Solution036.h"
+#include "Solution036.hpp"
 #include <functional>
 
 int Solution036::mirrorReflection(int p, int q)

@@ -1,4 +1,4 @@
-#include "Solution048.h"
+#include "Solution048.hpp"
 
 std::vector<std::vector<int>> Solution048::generate(int numRows)
 {

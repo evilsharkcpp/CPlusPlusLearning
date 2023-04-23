@@ -1,4 +1,4 @@
-#include "Solution054.h"
+#include "Solution054.hpp"
 
 int Solution054::titleToNumber(std::string columnTitle)
 {

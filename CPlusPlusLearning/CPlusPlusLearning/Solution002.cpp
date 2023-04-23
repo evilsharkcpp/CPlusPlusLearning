@@ -1,4 +1,4 @@
-#include "Solution002.h"
+#include "Solution002.hpp"
 
 int Solution002::maxArea(std::vector<int>& height)
 {

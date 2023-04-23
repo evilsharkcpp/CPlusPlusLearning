@@ -1,4 +1,4 @@
-#include "Solution059.h"
+#include "Solution059.hpp"
 #include <algorithm>
 
 int Solution059::numRescueBoats(std::vector<int>& people, int limit)

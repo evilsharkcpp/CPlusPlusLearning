@@ -1,4 +1,4 @@
-#include "Solution047.h"
+#include "Solution047.hpp"
 
 int Solution047::maxProfit(std::vector<int>& prices)
 {

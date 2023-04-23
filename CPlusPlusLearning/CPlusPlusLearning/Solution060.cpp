@@ -1,4 +1,4 @@
-#include "Solution060.h"
+#include "Solution060.hpp"
 #include <unordered_set>
 
 int Solution060::partitionStringUsingSet(std::string s)

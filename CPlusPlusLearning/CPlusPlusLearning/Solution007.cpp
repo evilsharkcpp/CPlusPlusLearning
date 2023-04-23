@@ -1,4 +1,4 @@
-#include "Solution007.h"
+#include "Solution007.hpp"
 
 ListNode* Solution007::removeNthFromEnd(ListNode* head, int n)
 {

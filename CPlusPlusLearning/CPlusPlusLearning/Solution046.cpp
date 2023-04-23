@@ -1,4 +1,4 @@
-#include "Solution046.h"
+#include "Solution046.hpp"
 #include <functional>
 #include <stack>
 

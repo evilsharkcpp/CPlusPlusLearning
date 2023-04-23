@@ -1,4 +1,4 @@
-#include "Solution061.h"
+#include "Solution061.hpp"
 #include <vector>
 
 std::string Solution061::convert(std::string s, int numRows)
