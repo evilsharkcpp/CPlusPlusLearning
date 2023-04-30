@@ -7,70 +7,6 @@ set(CMAKE_CXX_STANDARD 11)
 include_directories(include)
 
 set (headers
-include/TreeNode.h
-include/ListNode.h
-include/Solution001.hpp
-include/Solution002.hpp
-include/Solution003.hpp
-include/Solution004.hpp
-include/Solution005.hpp
-include/Solution006.hpp
-include/Solution007.hpp
-include/Solution008.hpp
-include/Solution009.hpp
-include/Solution010.hpp
-include/Solution011.hpp
-include/Solution012.hpp
-include/Solution013.hpp
-include/Solution014.hpp
-include/Solution015.hpp
-include/Solution016.hpp
-include/Solution017.hpp
-include/Solution018.hpp
-include/Solution019.hpp
-include/Solution020.hpp
-include/Solution021.hpp
-include/Solution022.hpp
-include/Solution023.hpp
-include/Solution024.hpp
-include/Solution025.hpp
-include/Solution026.hpp
-include/Solution027.hpp
-include/Solution028.hpp
-include/Solution029.hpp
-include/Solution030.hpp
-include/Solution031.hpp
-include/Solution032.hpp
-include/Solution033.hpp
-include/Solution034.hpp
-include/Solution035.hpp
-include/Solution036.hpp
-include/Solution037.hpp
-include/Solution038.hpp
-include/Solution039.hpp
-include/Solution040.hpp
-include/Solution041.hpp
-include/Solution042.hpp
-include/Solution043.hpp
-include/Solution044.hpp
-include/Solution045.hpp
-include/Solution046.hpp
-include/Solution047.hpp
-include/Solution048.hpp
-include/Solution049.hpp
-include/Solution050.hpp
-include/Solution051.hpp
-include/Solution052.hpp
-include/Solution053.hpp
-include/Solution054.hpp
-include/Solution055.hpp
-include/Solution056.hpp
-include/Solution057.hpp
-include/Solution058.hpp
-include/Solution059.hpp
-include/Solution060.hpp
-include/Solution061.hpp
-include/Solution062.hpp
 )
 
 set (sources 
@@ -136,6 +72,11 @@ Solution059.cpp
 Solution060.cpp
 Solution061.cpp
 Solution062.cpp
+Solution063.cpp
+Solution064.cpp
+Solution065.cpp
+Solution066.cpp
+Solution067.cpp
 )
 
 add_executable(${PROJECT_NAME} CPlusPlusLearning.cpp ${headers} ${sources})
