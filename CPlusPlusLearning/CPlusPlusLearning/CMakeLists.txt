@@ -88,6 +88,8 @@ Solution075.cpp
 Solution076.cpp
 Solution077.cpp
 Solution078.cpp
+Solution079.cpp
+Solution080.cpp
 )
 
 add_executable(${PROJECT_NAME} CPlusPlusLearning.cpp ${headers} ${sources})
