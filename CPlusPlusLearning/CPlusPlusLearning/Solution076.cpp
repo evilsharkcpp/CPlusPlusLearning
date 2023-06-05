@@ -4,7 +4,7 @@
 #include <array>
 
 bool Solution076::isPathCrossing(std::string path) {
-    std::unordered_map<int, std::unordered_set<int>> hash{{0, std::unordered_set{0}}};
+    std::unordered_map<int, std::unordered_set<int>> hash{{0, std::unordered_set<int>{0}}};
     std::array<int, 2> current_pos {0, 0}; 
 
     for(const auto& p : path) {
