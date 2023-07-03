@@ -1,6 +1,6 @@
 #include "Solution088.hpp"
 
-long long Solution087::minOperations(std::vector<int> &nums1,
+long long Solution088::minOperations(std::vector<int> &nums1,
  std::vector<int> &nums2, int k) {
     if(nums1 == nums2) {
         return 0;
