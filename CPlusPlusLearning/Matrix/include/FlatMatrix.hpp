@@ -1,5 +1,5 @@
 #ifndef FLATMATRIX_HPP
-#define FLATMATRIXHPP
+#define FLATMATRIX_HPP
 
 #include "IMatrix.hpp"
 
@@ -23,7 +23,7 @@ namespace Matrixes{
                     }
                 }
             }
-            void sub(const IMatrix& right) override{
+            void sub(const IMatrix<T>& right) override{
                 std::pair<size_t, size_t> size { this->getSize() };
                 if(size != right.getSize()){
                     throw std::exception("Different sizes");
@@ -34,7 +34,7 @@ namespace Matrixes{
                     }
                 }
             }
-            void mult(const IMatrix& right) override{
+            void mult(const IMatrix<T>& right) override{
 
             }
             void transpose() override{
